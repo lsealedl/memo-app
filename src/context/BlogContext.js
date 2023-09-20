@@ -8,6 +8,8 @@ const memoReducer = (state,action) => {
     switch (action.type) {
         case 'add-memo':
             return [...state,{title: `Memo #${state.length + 1} `}] 
+        case 'delete-memo':
+            return state.filter((_, index) => index !== action.index);
         default:
             return state
     }
@@ -15,7 +17,11 @@ const memoReducer = (state,action) => {
 export const BlogProvider = ({children}) => {
     const [memoLists, dispatch] = useReducer(memoReducer,[])
 
-    const addMemo = () => {dispatch({type: 'add-memo'})}
+    const addMemo = () => {dispatch({type: 'add-memo'})};
+    const deleteMemo = (index) => {
+        dispatch({ type: 'delete-memo', index });
+      };
+    
     //const [memoLists, setMemoLists] = useState([])
 
     // const addMemmo = () => {
@@ -23,7 +29,7 @@ export const BlogProvider = ({children}) => {
     // }
 
     return (
-        <BlogContext.Provider value={{data:memoLists, addMemo}}>
+        <BlogContext.Provider value={{data:memoLists, addMemo,deleteMemo }}>
             {children}
         </BlogContext.Provider>
     )
