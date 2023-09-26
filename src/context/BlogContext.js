@@ -1,38 +1,30 @@
-import React, {createContext, useState , useReducer} from "react";
+import createDataContext from "./createDataContext";
 
-
-
-const BlogContext = createContext()
-
-const memoReducer = (state,action) => {
-    switch (action.type) {
-        case 'add-memo':
-            return [...state,{title: `Memo #${state.length + 1} `}] 
-        case 'delete-memo':
-            return state.filter((_, index) => index !== action.index);
-        default:
-            return state
-    }
+const memoReducer = (state, action) => {
+console.log(action);
+switch (action.type) {
+case "add-memo":
+return [
+...state,
+{
+id: Math.floor(Math.random() * 99999),
+title: action.payload.title,
+content: action.payload.content,
+},
+];
+default:
+return state;
 }
-export const BlogProvider = ({children}) => {
-    const [memoLists, dispatch] = useReducer(memoReducer,[])
+};
 
-    const addMemo = () => {dispatch({type: 'add-memo'})};
-    const deleteMemo = (index) => {
-        dispatch({ type: 'delete-memo', index });
-      };
-    
-    //const [memoLists, setMemoLists] = useState([])
+const addMemo = (dispatch) => {
+return (title, content) => {
+dispatch({ type: "add-memo", payload: { title, content } });
+};
+};
 
-    // const addMemmo = () => {
-    //     setMemoLists([...memoLists,{title: `Memo #${memoLists.length + 1}`}])
-    // }
-
-    return (
-        <BlogContext.Provider value={{data:memoLists, addMemo,deleteMemo }}>
-            {children}
-        </BlogContext.Provider>
-    )
-}
-
-export default BlogContext
+export const { Context, Provider } = createDataContext(
+memoReducer,
+{ addMemo },
+[]
+);
