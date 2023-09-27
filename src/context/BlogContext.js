@@ -28,7 +28,7 @@ const addMemo = (dispatch) => {
     };
 };
 const delMemo = dispatch => {
-    return (id) => dispatch({ type: 'del-momo', payload: id });
+    return (id) => dispatch({ type: 'del-memo', payload: id });
 };
 const editMemo = dispatch =>{
     return (id,title,content) => dispatch({type:'edit-memo',payload:{id,title,content}});
