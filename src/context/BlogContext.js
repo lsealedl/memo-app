@@ -36,5 +36,5 @@ const editMemo = dispatch =>{
 export const { Context, Provider } = createDataContext(
     memoReducer,
     { addMemo ,delMemo,editMemo},
-    [{title:'Title000',content:'Content000'}]
+    [{id:0,title:'Title000',content:'Content000'}]
 );
