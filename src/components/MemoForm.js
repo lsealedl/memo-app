@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
-const MemoForm = ({ onSubmit }) => {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+const MemoForm = ({ onSubmit,initValues }) => {
+    const [title, setTitle] = useState(initValues.title);
+    const [content, setContent] = useState(initValues.content);
 
     return (
         <View>
@@ -16,6 +16,8 @@ const MemoForm = ({ onSubmit }) => {
             <Text style={styles.label}>Content:</Text>
             <TextInput
                 style={styles.input}
+                multiline
+                numberOfLines={5}
                 value={content}
                 onChangeText={(text) => setContent(text)}
             />
@@ -28,12 +30,15 @@ const MemoForm = ({ onSubmit }) => {
         </View>
     );
 };
-
+MemoForm.defaultProps = {
+    initValues:{title:"",content:""},
+}
 const styles = StyleSheet.create({
     label: {
         fontSize: 20,
         marginBottom: 5,
         marginLeft: 5,
+        fontWeight:'bold',
     },
     input: {
         fontSize: 18,

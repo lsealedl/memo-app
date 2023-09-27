@@ -2,16 +2,22 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Context } from "../context/BlogContext";
 import MemoForm from "../components/MemoForm";
-const EditScreen = ({ route }) => {
-    const { state } = useContext(Context);
+const EditScreen = ({ route,navigation }) => {
+    const { state,editMemo } = useContext(Context);
     const id = route.params.id;
 
-    const memo = state.find((memo)=>memo.id===route.params.id);
-    console.log(memo);
+    const memo = state.find((memo)=>memo.id===id);
+    //console.log(memo);
     return (
         <View style={styles.container}>
             <Text>{id}</Text>
-            <MemoForm/>
+            <MemoForm initValues = {{title:memo.title,content:memo.content}}
+            onSubmit={(title,content)=>{
+                editMemo(id,title,content)
+                //navigation.navigate("Index");
+                navigation.pop();
+            }}
+            />
         </View>
     );
 };
