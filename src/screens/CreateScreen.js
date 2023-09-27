@@ -4,15 +4,15 @@ import MemoForm from "../components/MemoForm";
 import { Context } from "../context/BlogContext";
 
 const CreateScreen = ({ navigation }) => {
-const { addMemo } = useContext(Context);
-return (
-<MemoForm
-onSubmit={(title, content) => {
-addMemo(title, content);
-navigation.navigate("Index");
-}}
-/>
-);
+    const { addMemo } = useContext(Context);
+    return (
+        <MemoForm
+            onSubmit={(title, content) => {
+                addMemo(title, content);
+                navigation.navigate("Index");
+            }}
+        />
+    );
 };
 
 const styles = StyleSheet.create({});

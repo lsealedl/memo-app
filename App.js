@@ -10,58 +10,58 @@ import EditScreen from "./src/screens/EditScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-return (
-<Provider>
-<NavigationContainer>
-<Stack.Navigator
-screenOptions={{
-headerTitle: "Memo 📝",
-headerStyle: { backgroundColor: "#4f6f8c" },
-headerTintColor: "#fff",
-}}
->
-<Stack.Screen
-name="Index"
-component={IndexScreen}
-options={({ navigation }) => ({
-headerRight: () => (
-<TouchableOpacity onPress={() => navigation.navigate("Create")}>
-<Feather name="plus" size={30} color="white" />
-</TouchableOpacity>
-),
-})}
-/>
-<Stack.Screen name="Create" component={CreateScreen} />
-<Stack.Screen name="Edit" component={EditScreen} />
-<Stack.Screen
-name="Show"
-component={ShowScreen}
-options={({ navigation, route }) => ({
-headerRight: () => (
-<TouchableOpacity
-onPress={() =>
-navigation.navigate("Edit", {
-id: route.params.id,
-})
-}
->
-<Entypo name="pencil" size={30} color="white" />
-</TouchableOpacity>
-),
-})}
-/>
-</Stack.Navigator>
-</NavigationContainer>
-</Provider>
-);
+    return (
+        <Provider>
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerTitle: "Memo 📝",
+                        headerStyle: { backgroundColor: "#4f6f8c" },
+                        headerTintColor: "#fff",
+                    }}
+                >
+                    <Stack.Screen
+                        name="Index"
+                        component={IndexScreen}
+                        options={({ navigation }) => ({
+                            headerRight: () => (
+                                <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+                                    <Feather name="plus" size={30} color="white" />
+                                </TouchableOpacity>
+                            ),
+                        })}
+                    />
+                    <Stack.Screen name="Create" component={CreateScreen} />
+                    <Stack.Screen name="Edit" component={EditScreen} />
+                    <Stack.Screen
+                        name="Show"
+                        component={ShowScreen}
+                        options={({ navigation, route }) => ({
+                            headerRight: () => (
+                                <TouchableOpacity
+                                    onPress={() =>
+                                        navigation.navigate("Edit", {
+                                            id: route.params.id,
+                                        })
+                                    }
+                                >
+                                    <Entypo name="pencil" size={30} color="white" />
+                                </TouchableOpacity>
+                            ),
+                        })}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
+    );
 }
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: "#fff",
-alignItems: "center",
-justifyContent: "center",
-},
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
- 
+
